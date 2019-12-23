@@ -159,3 +159,55 @@ Once you've selected the master branch, click on Publish. This will show you pen
 
 ## Build
 
+In your DevOps project, click the Pipelines button and go to Builds. Click New Pipeline and select to use the classic editor to create a pipeline. Select Azure Repos Git, then choose your repo and select the ADF_Publish branch. Next, click to start with an empty job.
+
+![buildPipeline.png](images/buildPipeline.png)
+
+Click on the Triggers tab and select "enable continuous integration" and then include the ADF_Publish branch to ensure we only start a build when this branch has a new commit.
+
+![buildTrigger.png](images/buildTrigger.png)
+
+Click back to the tasks tab. It is here that you may decide to also copy assets for other systems such as Spark or SQL DW. For now, we'll just be building from ADF so click the add task button.
+
+![addTask.png](images/addTask.png)
+
+Search for publish artifact and add the Publish Build Artifacts task.
+
+![addTask2.png](images/addTask2.png)
+
+Click on the task to configure and click browse to select the path to publish. Choose the folder in the repository that contains your ARM templates.
+
+![pathToPublish.png](images/pathToPublish.png)
+
+Give the artifact a name of adfTemplate
+
+![taskSettings.png](images/taskSettings.png)
+
+Click "Save and Queue" on the menu to create your first build artifact. Click Save and Run
+
+![firstBuild.png](images/firstBuild.png)
+
+## Releases
+
+Now click on Releases in the menu and then New Pipeline. Again, click to start with an empty job. Give the stage a name such as "TestEnvironment".
+
+![newRelease.png](images/newRelease.png)
+
+Next, click to add an artifact and select your build.
+
+![addArtifact.png](images/addArtifact.png)
+
+![addArtifact2.png](images/addArtifact2.png)
+
+Give your release pipeline a name then click the save button.
+
+![releasePipeName.png](images/releasePipeName.png)
+
+Click to view the stage tasks under your test environment.
+
+![stageTasks.png](images/stageTasks.png)
+
+Add a task to your task list to perform an Azure Resource Group Deployment.
+
+![armdeploy.png](images/armdeploy.png)
+
