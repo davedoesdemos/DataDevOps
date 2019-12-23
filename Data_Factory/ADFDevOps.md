@@ -211,3 +211,32 @@ Add a task to your task list to perform an Azure Resource Group Deployment.
 
 ![armdeploy.png](images/armdeploy.png)
 
+Configure the settings for the task. You'll need to select and authorise your subscription first. Select your resource group and region. Next, select "Linked Artifact" and then browse to the "ARMTemplateForFactory.json" and "ARMTemplateParametersForFactory.json". Override the -factoryName parameter with the name of your DeplADF environment to ensure you overwrite the correct one. Finally, you MUST do this as an incremental deployment otherwised the Data Factory will be removed. Finally click the save button.
+
+![armdeploySettings.png](images/armdeploySettings.png)
+
+The above process can be repeated to add further environments as needed.
+
+## Deploy
+
+Click "Create Release" to test the release pipeline. Usually these would be triggered by the build process but here we'll create it manually. Select the test environment and your artifact and click Create.
+
+![createRelease.png](images/createRelease.png)
+
+Go back to all releases and click on Release-1.
+
+![release1.png](images/release1.png)
+
+Click Deploy after hovering over the TestEnvironment box. Click Deploy again to begin deployment. You'll then see the deployment take place. 
+
+![deploy.png](images/deploy.png)
+
+You'll see the progress look like the below. Click for more details and logs.
+
+![progress.png](images/progress.png)
+
+Once complete you can open the DeplADF instance and see the changes which have been deployed. It will be identical to the DevADF instance.
+
+![depladf.png](images/depladf.png)
+
+You may now test the deployment process by creating a new branch in the development environment and following the deploy instructions again.
