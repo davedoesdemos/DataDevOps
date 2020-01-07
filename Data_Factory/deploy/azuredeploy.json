@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminPassword": {
+      "type": "securestring"
+    }
+  },
+  "variables": {
+    "datastorename": "[concat('datastore', uniqueString(resourceGroup().id))]",
+    "adfdevname": "[concat('devadf', uniqueString(resourceGroup().id))]",
+    "adfdeplname": "[concat('depladf', uniqueString(resourceGroup().id))]"
+  },
+  "resources": [
+    {
+      "name": "[variables('datastorename')]",
+      "apiVersion": "2018-07-01",
+      "type": "Microsoft.Storage/storageAccounts",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "location": "[resourceGroup().location]",
+      "kind": "StorageV2",
+      "resources": [
+        {
+          "type": "blobServices",
+          "name": "default",
+          "apiVersion": "2018-07-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Storage/storageAccounts', variables('datastorename'))]"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "[variables('adfdevname')]",
+      "apiVersion": "2018-06-01",
+      "type": "Microsoft.DataFactory/factories",
+      "location": "[resourceGroup().location]",
+      "identity": {
+        "type": "SystemAssigned"
+      }
+    },
+    {
+      "name": "[variables('adfdeplname')]",
+      "apiVersion": "2018-06-01",
+      "type": "Microsoft.DataFactory/factories",
+      "location": "[resourceGroup().location]",
+      "identity": {
+        "type": "SystemAssigned"
+      }
+    }
+  ],
+      "outputs": {}
+}
