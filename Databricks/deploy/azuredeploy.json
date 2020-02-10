@@ -2,6 +2,9 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+        "accessPolicies": {
+            "type": "array"
+        }
   },
   "variables": {
     "keyvaultname": "[concat('keyvault', uniqueString(resourceGroup().id))]",
@@ -10,10 +13,13 @@
   "resources": [
     {
       "type": "Microsoft.KeyVault/vaults",
-      "apiVersion": "2018-02-14",
+      "apiVersion": "2016-10-01",
       "name": "[variables('keyvaultname')]",
       "location": "[resourceGroup().location]",
       "properties": {
+        "enableSoftDelete":true,
+        "createMode":"default",
+                "accessPolicies": "[parameters('accessPolicies')]",
           "tenantId": "[subscription().tenantId]",
           "sku": {
               "name": "Standard",

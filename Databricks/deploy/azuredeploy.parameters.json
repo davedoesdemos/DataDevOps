@@ -5,8 +5,8 @@
     "accessPolicies": {
         "value": [
             {
-                "objectId": "",
-                "tenantId": "",
+                "objectId": "",  <-fill this in
+                "tenantId": "",  <-fill this in
                 "permissions": {
                     "keys": [
                         "Get",
