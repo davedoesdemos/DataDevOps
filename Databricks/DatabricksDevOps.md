@@ -185,13 +185,13 @@ Configure the powershell task to use inline code and paste in the below code:
 # Docs at https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/workspace#--import
 
 
-$fileName = "$(System.DefaultWorkingDirectory)/_build/Notebooks/Users/dalusty@microsoft.com/test.py"
+$fileName = "$(System.DefaultWorkingDirectory)/<path to file in artifact>/<filename>.py"
 $newNotebookName = "ImportedNotebook"
 # Get our secret from the variable
 $Secret = "Bearer " + "$(Databricks)"
 
 # Set the URI of the workspace and the API endpoint
-$Uri = "https://northeurope.azuredatabricks.net/api/2.0/workspace/import"
+$Uri = "https://<your region>.azuredatabricks.net/api/2.0/workspace/import"
 
 # Open and import the notebook
 $BinaryContents = [System.IO.File]::ReadAllBytes($fileName)
@@ -213,6 +213,7 @@ $headers = @{
 }
 
 Invoke-RestMethod -Uri $uri -Method Post -Headers $headers -Body $BodyText
+
 ```
 
 Change <your user> to your user id in databricks. The variable set from Key Vault will automatically be downloaded so you don't need to do anything to use it, just reference it by name. Make sure your URI is correct for your workspace, you can see this on the overview pane in the Azure Portal when looking at the workspace.

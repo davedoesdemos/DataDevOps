@@ -8,7 +8,7 @@ $newNotebookName = "ImportedNotebook"
 $Secret = "Bearer " + "$(Databricks)"
 
 # Set the URI of the workspace and the API endpoint
-$Uri = "https://northeurope.azuredatabricks.net/api/2.0/workspace/import"
+$Uri = "https://<your region>.azuredatabricks.net/api/2.0/workspace/import"
 
 # Open and import the notebook
 $BinaryContents = [System.IO.File]::ReadAllBytes($fileName)
