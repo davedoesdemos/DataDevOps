@@ -9,15 +9,16 @@
   },
   "resources": [
     {
+      "type": "Microsoft.KeyVault/vaults",
       "apiVersion": "2018-02-14",
       "name": "[variables('keyvaultname')]",
       "location": "[resourceGroup().location]",
-      "type": "Microsoft.KeyVault/vaults",
       "properties": {
+          "tenantId": "[subscription().tenantId]",
           "sku": {
               "name": "Standard",
               "family": "A"
-          }          
+          }
       },
       "tags": {},
       "dependsOn": []
