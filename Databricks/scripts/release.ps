@@ -2,7 +2,7 @@
 # Docs at https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/workspace#--import
 
 
-$fileName = "$(System.DefaultWorkingDirectory)/_build/Notebooks/Users/dalusty@microsoft.com/test.py"
+$fileName = "$(System.DefaultWorkingDirectory)/<path to file in artifact>/<filename>.py"
 $newNotebookName = "ImportedNotebook"
 # Get our secret from the variable
 $Secret = "Bearer " + "$(Databricks)"
