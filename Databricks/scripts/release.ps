@@ -1,0 +1,32 @@
+# Upload a notebook to Azure Databricks
+# Docs at https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/workspace#--import
+
+
+$fileName = "$(System.DefaultWorkingDirectory)/_build/Notebooks/Users/dalusty@microsoft.com/test.py"
+$newNotebookName = "ImportedNotebook"
+# Get our secret from the variable
+$Secret = "Bearer " + "$(Databricks)"
+
+# Set the URI of the workspace and the API endpoint
+$Uri = "https://northeurope.azuredatabricks.net/api/2.0/workspace/import"
+
+# Open and import the notebook
+$BinaryContents = [System.IO.File]::ReadAllBytes($fileName)
+$EncodedContents = [System.Convert]::ToBase64String($BinaryContents)
+
+$Body = @{
+    content = "$EncodedContents"
+    language = "PYTHON"
+    overwrite = $true
+    format = "SOURCE"
+    path= "/Users/<your user>/" + "$newNotebookName"
+}
+
+#Convert body to JSON
+$BodyText = $Body | ConvertTo-Json
+
+$headers = @{
+    Authorization = $Secret
+}
+
+Invoke-RestMethod -Uri $uri -Method Post -Headers $headers -Body $BodyText

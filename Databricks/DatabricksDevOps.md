@@ -44,3 +44,56 @@ Give the token a name and select a suitable lifespan. Note that it should become
 Copy the generated token now as you won't be able to access it again.
 
 ![Generated Token](images/7.GeneratedToken.png)
+
+Open your Key Vault and click Secrets on the menu, then Generate/Import.
+
+![Key Vault Secrets](images/8.KeyVaultSecrets.png)
+
+Enter your secret and give the secret a descriptive name. Add in the expiration timestamp to ensure you have this recorded centrally.
+
+![Create Secret](images/9.CreateSecret.png)
+
+## Azure DevOps
+
+In your DevOps project, click Pipelines and then Library. Next, click + Variable Group.
+
+![New Variable Group](images/10.NewVariableGroup.png)
+
+Give the group a name such as Azure Key Vault. Select to link secrets from an Azure Key Vault and then select your subscription and Key Vault from the drop down lists. You may need to click authorize to configure the connections. Add in the Databricks token variable and click save.
+
+![10.NewVariableGroup2.png](images/10.NewVariableGroup2.png)
+
+```powershell
+# Upload a notebook to Azure Databricks
+# Docs at https://docs.microsoft.com/en-us/azure/databricks/dev-tools/api/latest/workspace#--import
+
+
+$fileName = "$(System.DefaultWorkingDirectory)/_build/Notebooks/Users/dalusty@microsoft.com/test.py"
+$newNotebookName = "ImportedNotebook"
+# Get our secret from the variable
+$Secret = "Bearer " + "$(Databricks)"
+
+# Set the URI of the workspace and the API endpoint
+$Uri = "https://northeurope.azuredatabricks.net/api/2.0/workspace/import"
+
+# Open and import the notebook
+$BinaryContents = [System.IO.File]::ReadAllBytes($fileName)
+$EncodedContents = [System.Convert]::ToBase64String($BinaryContents)
+
+$Body = @{
+    content = "$EncodedContents"
+    language = "PYTHON"
+    overwrite = $true
+    format = "SOURCE"
+    path= "/Users/<your user>/" + "$newNotebookName"
+}
+
+#Convert body to JSON
+$BodyText = $Body | ConvertTo-Json
+
+$headers = @{
+    Authorization = $Secret
+}
+
+Invoke-RestMethod -Uri $uri -Method Post -Headers $headers -Body $BodyText
+```
