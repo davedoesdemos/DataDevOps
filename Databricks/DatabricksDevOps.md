@@ -2,7 +2,7 @@
 **Produced by Dave Lusty**
 
 ## Introduction
-This demo shows how to use DevOps pipelines and branching for code promotion within Azure DevOps. The video is not yet available [coming soon](youtu.be/CW5GXIEhePE )
+This demo shows how to use DevOps pipelines and branching for code promotion within Azure DevOps. The video is [available here](https://youtu.be/R7tJZelEt-Q )
 
 ## Setup
 
