@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <RunSettings>
+  
+  <TestRunParameters>
+    <Parameter name="searchString" value="set this in Azure DevOps Pipeline" />
+    <Parameter name="storageConnectionString" value="set this in Azure DevOps Pipeline" />
+    <Parameter name="containerName" value="set this in Azure DevOps Pipeline" />
+  </TestRunParameters>
+  </RunSettings>
