@@ -5,5 +5,8 @@
     <Parameter name="searchString" value="set this in Azure DevOps Pipeline" />
     <Parameter name="storageConnectionString" value="set this in Azure DevOps Pipeline" />
     <Parameter name="containerName" value="set this in Azure DevOps Pipeline" />
+    <Parameter name="SQLConnectionString" value="" />
+    <Parameter name="SqlQuery" value="" />
+    <Parameter name="SqlQuery" value="" />
   </TestRunParameters>
   </RunSettings>
