@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This demo shows how to use unit testing projects to perform tests in Azure DevOps pipelines to perform automated testing. This demo won't show any useful tests, but instead focusses on how to create and run tests. The video is [not available yet](https://youtu.be/R7tJZelEt-Q )
+This demo shows how to use unit testing projects to perform tests in Azure DevOps pipelines to perform automated testing. This demo won't show any useful tests, but instead focusses on how to create and run tests. The video is [here](https://youtu.be/H_IaqNDJ11c)
 
 ## Setup
 
