@@ -1,10 +1,13 @@
 # Data Platform DevOps - Testing
+
 **Produced by Dave Lusty**
 
 ## Introduction
+
 This demo shows how to use DevOps pipelines to run automated testing in Azure DevOps. The video is [not available yet](https://youtu.be/R7tJZelEt-Q )
 
 There are multiple tasks associated with this demo:
+
 * Create the test project in Visual Studio
 * Write individual tests around your testing scenarios
 * Set up the tests in Azure DevOps
