@@ -1,9 +1,10 @@
 import pytest
+from pytest import approx
 
 def test_method1():
     x=2
     y=3
-    assert x+1 == y,"test failed"
+    assert x+1 == approx(y, 1),"test failed"
 
 def test_method2():
     x=3
