@@ -1,0 +1,1 @@
+pytest --junitxml=./results.xml ./tests.py
