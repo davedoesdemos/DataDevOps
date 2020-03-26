@@ -1,2 +1,4 @@
+cd
 pip install pytest
-pytest tests.py --junitxml=results.xml
+cd
+pytest .\tests.py --junitxml=.\results.xml
