@@ -1,1 +1,1 @@
-pytest --junitxml=./results.xml ./tests.py
+pytest --junitxml=results.xml tests.py
