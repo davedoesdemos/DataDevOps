@@ -215,9 +215,9 @@ $headers = @{
 Invoke-RestMethod -Uri $uri -Method Post -Headers $headers -Body $BodyText
 
 ```
-Change <path to file in artifact>/<filename>.py to your path inside the artifact. If you don't know this path, add a "copy files" task to the pipeline and use the browse button to select the file and then copy the path. Remove the copy files task after you've done this and pasted the path into your script.
+Change `<path to file in artifact>/<filename>.py` to your path inside the artifact. If you don't know this path, add a "copy files" task to the pipeline and use the browse button to select the file and then copy the path. Remove the copy files task after you've done this and pasted the path into your script.
 
-Change <your user> to your user id in databricks. The variable set from Key Vault will automatically be downloaded so you don't need to do anything to use it, just reference it by name. Make sure your URI is correct for your workspace, you can see this on the overview pane in the Azure Portal when looking at the workspace.
+Change `<your user>` to your user id in databricks. The variable set from Key Vault will automatically be downloaded so you don't need to do anything to use it, just reference it by name. Make sure your URI is correct for your workspace, you can see this on the overview pane in the Azure Portal when looking at the workspace.
 
 ![36.powershell.png](images/36.powershell.png)
 
