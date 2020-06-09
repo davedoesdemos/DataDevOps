@@ -174,6 +174,10 @@ Click the lightning icon next to the artifact to enable continuous deployment.
 
 ![34.trigger.png](images/34.trigger.png)
 
+Click Variables on the menu and add in the variable group so that your pipeline can find the secret we set up earlier.
+
+![34b.addvariablegroup.png](images/34b.addvariablegroup.png)
+
 Click tasks on the menu to set up the job. Add a PowerShell task to the pipeline.
 
 ![35.addTask.png](images/35.addTask.png)
