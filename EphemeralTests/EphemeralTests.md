@@ -8,7 +8,7 @@ When creating a DevOps strategy for a data lake the question often comes up of h
 
 Instead, it is better to create an ephemeral environment when running your release pipeline and destroy it when the release pipeline is completed. Needless to say a short lived environment should not spend multiple hours copying data, so instead we would use a variable group on the pipeline. In your production version of the pipeline, both source and sink will point to the production copy of the data. In the case of QA your source(s) will still be production data sources, but your sink will be a new storage account location dedicated to the test environment. While it would be possible to use the production storage account, this brings several challenges. First and foremost, it would require the QA environment to have read/write access to the production lake. Ideally you should set up a new permission on the lake with read only access to ensure that the only harm you could do would be if the testing puts a large load on the lake. Secondly is removal at the end of testing, and for this removing a storage account entirely (or a whole resource group including the QA Data Factory) is faster than deleting files. This is especially true of standard blob storage where every file must be touched rather than a whole folder.
 
-![ephemeraloverview](images\ephemeraloverview.png)
+![ephemeraloverview](images/ephemeraloverview.png)
 
 In this scenario, many new environments can be created as needed, often one per pipeline for testing purposes.
 
