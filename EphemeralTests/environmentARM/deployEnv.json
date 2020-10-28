@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "buildID": {
+            "defaultValue": "buildID",
+            "type": "string"
+        }},
+    "variables": {
+        "dataFactoryName": "[concat('adf, parameters('buildID'), uniqueString(resourceGroup().id))]",
+        "storageName": "[concat('st', parameters('buildID'), uniqueString(resourceGroup().id))]"
+        },
+    "resources": [
+        {
+            "name": "[variables('storageName')]",
+            "apiVersion": "2018-07-01",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+              "name": "Standard_LRS"
+            },
+            "location": "[resourceGroup().location]",
+            "kind": "StorageV2",
+            "resources": [
+              {
+                "type": "blobServices",
+                "name": "default",
+                "apiVersion": "2018-07-01",
+                "dependsOn": [
+                  "[resourceId('Microsoft.Storage/storageAccounts', variables('datastorename'))]"
+                ]
+              }
+            ]
+          }
+        {
+            "type": "Microsoft.DataFactory/factories",
+            "apiVersion": "2018-06-01",
+            "name": "[variables('dataFactoryName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {}
+        }
+    ]
+}
