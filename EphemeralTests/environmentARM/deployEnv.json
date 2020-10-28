@@ -46,7 +46,7 @@
             "location": "[resourceGroup().location]",
             "properties":{
                 "sku": {
-                    "name": "[parameters('sku')]",
+                    "name": "standard",
                     "family": "A"
                 },
                 "tenantId": "[subscription().tenantId]"
