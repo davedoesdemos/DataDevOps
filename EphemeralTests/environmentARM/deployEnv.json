@@ -40,7 +40,7 @@
             "properties": {}
         },
         {
-            "type": "Microsoft.KeyVault",
+            "type": "Microsoft.KeyVault/vaults",
             "apiVersion": "2016-10-01",
             "name": "[variables('keyVaultName')]",
             "location": "[resourceGroup().location]",
@@ -48,7 +48,8 @@
                 "sku": {
                     "name": "[parameters('sku')]",
                     "family": "A"
-                }
+                },
+                "tenantId": "[subscription().tenantId]"
             }
         }
     ],
