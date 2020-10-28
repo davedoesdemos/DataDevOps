@@ -3,12 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "buildID": {
-            "defaultValue": "buildID",
+            "defaultValue": "build",
             "type": "string"
         }},
     "variables": {
         "dataFactoryName": "[concat('adf', parameters('buildID'), uniqueString(resourceGroup().id))]",
-        "storageName": "[concat('st', parameters('buildID'), uniqueString(resourceGroup().id))]"
+        "storageName": "[concat('st', parameters('buildID'), uniqueString(resourceGroup().id))]",
+        "keyVaultName": "[concat('kv', parameters('buildID'), uniqueString(resourceGroup().id))]"
         },
     "resources": [
         {
@@ -37,6 +38,19 @@
             "name": "[variables('dataFactoryName')]",
             "location": "[resourceGroup().location]",
             "properties": {}
+        },
+        {
+            "type": "Microsoft.KeyVault",
+            "apiVersion": "2016-10-01",
+            "name": "[variables('keyVaultName')]",
+            "location": "[resourceGroup().location]",
+            "properties":{
+                "sku": {
+                    "name": "[parameters('sku')]",
+                    "family": "A"
+                }
+            }
         }
-    ]
+    ],
+    "outputs": {}
 }
