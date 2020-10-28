@@ -7,7 +7,7 @@
             "type": "string"
         }},
     "variables": {
-        "dataFactoryName": "[concat('adf, parameters('buildID'), uniqueString(resourceGroup().id))]",
+        "dataFactoryName": "[concat('adf', parameters('buildID'), uniqueString(resourceGroup().id))]",
         "storageName": "[concat('st', parameters('buildID'), uniqueString(resourceGroup().id))]"
         },
     "resources": [
