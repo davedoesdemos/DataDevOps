@@ -26,7 +26,7 @@
                 "name": "default",
                 "apiVersion": "2018-07-01",
                 "dependsOn": [
-                  "[resourceId('Microsoft.Storage/storageAccounts', variables('datastorename'))]"
+                  "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
                 ]
               }
             ]
