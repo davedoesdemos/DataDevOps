@@ -30,7 +30,7 @@
                 ]
               }
             ]
-          }
+          },
         {
             "type": "Microsoft.DataFactory/factories",
             "apiVersion": "2018-06-01",
