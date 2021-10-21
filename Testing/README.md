@@ -4,13 +4,13 @@
 
 ## Introduction
 
-This demo shows how to use DevOps pipelines to run automated testing in Azure DevOps. The video is [not available yet](https://youtu.be/R7tJZelEt-Q )
+This demo shows some example tests you can use against your data environment. The video is [not available yet](https://youtu.be/R7tJZelEt-Q )
 
 There are multiple tasks associated with this demo:
 
-* Create the test project in Visual Studio
+* Create the test project in Visual Studio (shown in testing intro demo)
 * Write individual tests around your testing scenarios
-* Set up the tests in Azure DevOps
+* Set up the tests in Azure DevOps (shown in testing intro demo)
 
 ## Create Projects in Visual Studio
 
@@ -60,6 +60,41 @@ Within the test method we can then read the properties into variables as require
 ```
 
 ## Writing Tests
+
+### SQL Schema Tests
+
+```csharp
+        public void SQLTestColumnType()
+        {
+            //This test checks the data type of the specified column
+            string SQLConnectionString = this.TestContext.Properties["SQLConnectionString"].ToString();
+            //string SQLConnectionString = this.TestContext.Properties["SQLConnectionString"].ToString();
+            string SqlQuery = "SELECT DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '<tablename>' AND COLUMN_NAME = '<columnname>'";
+
+            //Set up the connection to SQL
+            SqlConnection SqlDb;
+            SqlDb = new SqlConnection(SQLConnectionString);
+            SqlDb.Open();
+
+            //Run the query
+            SqlCommand command;
+            SqlDataReader dataReader;
+            command = new SqlCommand(SqlQuery, SqlDb);
+            dataReader = command.ExecuteReader();
+
+            //Set up a string value to hold the result
+            string dataValue = "";
+            if (dataReader.Read())
+            {
+                dataValue = dataReader[0].ToString();
+            }
+            Regex myRegExToMatch = new Regex("^varchar$"); //this is the column type expected
+            StringAssert.Matches(dataValue, myRegExToMatch, "Incorrect Column Type");
+
+            //Close the connection to SQL
+            SqlDb.Close();
+        }
+```
 
 ### SQL String Match
 
